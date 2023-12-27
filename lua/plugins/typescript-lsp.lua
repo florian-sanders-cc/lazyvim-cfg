@@ -85,6 +85,10 @@ return {
         code_lens = "off",
         disable_member_code_lens = true,
         expose_as_code_action = "all",
+        tsserver_path = "/home/flo/.volta/tools/image/packages/typescript/bin/tsserver",
+        tsserver_plugins = {
+          "ts-lit-plugin",
+        },
         tsserver_file_preferences = {
           preferTypeOnlyAutoImports = false,
           quotePreference = "auto",
@@ -150,9 +154,6 @@ return {
           moduleResolution = "node",
           target = "ES2021",
           noImplicitAny = false,
-        },
-        tsserver_plugins = {
-          "ts-lit-plugin",
         },
       },
     },
