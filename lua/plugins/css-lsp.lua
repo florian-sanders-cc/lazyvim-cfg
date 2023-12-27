@@ -1,25 +1,29 @@
 if true then
   return {}
 end
--- disabled for now conflicts with stylelint lsp + I would like it to only suggest within a lit template
+-- not sure I need this LSP for now
 return {
   "neovim/nvim-lspconfig",
   ---@class PluginLspOpts
   opts = {
     ---@type lspconfig.options
     servers = {
-      ---@type lspconfig.options.emmet_language_server
-      emmet_language_server = {
-        enabled = false,
+      ---@type lspconfig.options.cssls
+      cssmodules_ls = {
         filetypes = {
           "css",
           "html",
           "less",
-          "pug",
           "sass",
           "scss",
           "javascript",
           "typescript",
+        },
+        enabled = false,
+        settings = {
+          css = {
+            validate = true,
+          },
         },
       },
     },

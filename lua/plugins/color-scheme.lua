@@ -2,14 +2,14 @@ if false then
   return {}
 end
 return {
-  -- add catppuccin
-  { "catppuccin/nvim" },
-
-  -- Configure LazyVim to load catppuccin
+  {
+    "rose-pine/neovim",
+    "edeneast/nightfox.nvim",
+  },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe",
+      colorscheme = "nordfox",
     },
   },
 }

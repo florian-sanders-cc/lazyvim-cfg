@@ -1,20 +1,58 @@
-if true then
+if false then
   return {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
-      ---@type lspconfig.options
       servers = {
         ---@type lspconfig.options.tsserver
         tsserver = {
+          filetypes = {
+            "javascript",
+            "typescript",
+          },
           settings = {
             implicitProjectConfiguration = {
               checkJs = true,
+              target = "ES2021",
+              lib = { "ES2021" },
+              allowJs = true,
+              moduleResolution = "node",
+            },
+            tsserver_plugins = {
+              {
+                name = "typescript-lit-html-plugin",
+              },
+              {
+                name = "/home/flo/Projects/components/node_modules/ts-lit-plugin/",
+                strict = true,
+              },
             },
             javascript = {
               validate = {
                 enabled = true,
               },
+              preferences = {
+                quoteStyle = "single",
+                renameMatchingJsxTags = true,
+              },
+              format = {
+                enable = true,
+                semicolons = "insert",
+                insertSpaceBeforeFunctionParenthesis = true,
+              },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              updateImportsOnFileMove = true,
+              preferGoToSourceDefinition = true,
+              -- implicitProjectConfig = {
+              --   target = "ES2022",
+              --   module = "ESNext",
+              --   checkJs = true,
+              --   strictNullChecks = true,
+              --   strictFunctionTypes = true,
+              --   experimentalDecorators = false,
+              -- },
             },
           },
         },
@@ -37,11 +75,18 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     opts = {
-
       settings = {
+        complete_function_calls = true,
+        -- spawn additional tsserver instance to calculate diagnostics on it
+        separate_diagnostic_server = true,
+        -- "change"|"insert_leave" determine when the client asks the server about diagnostic
+        publish_diagnostic_on = "insert_leave",
+        tsserver_max_memory = "auto",
+        code_lens = "off",
+        disable_member_code_lens = true,
         expose_as_code_action = "all",
         tsserver_file_preferences = {
-          preferTypeOnlyAutoImports = true,
+          preferTypeOnlyAutoImports = false,
           quotePreference = "auto",
           importModuleSpecifierEnding = "js",
           jsxAttributeCompletionStyle = "auto",
@@ -59,14 +104,14 @@ return {
           allowIncompleteCompletions = true,
           displayPartsForJSDoc = true,
           disableLineTextInReferences = true,
-          includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
           includeInlayParameterNameHints = "all",
           includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
+          includeInlayFunctionParameterTypeHints = false,
+          includeInlayVariableTypeHints = false,
+          includeInlayPropertyDeclarationTypeHints = false,
+          includeInlayFunctionLikeReturnTypeHints = false,
+          includeInlayEnumMemberValueHints = false,
         },
         tsserver_format_preferences = {
           preferTypeOnlyAutoImports = true,
@@ -89,18 +134,25 @@ return {
           semicolons = "ignore",
           indentSwitchCase = true,
         },
-        complete_function_calls = true,
-        implicitProjectConfig = {
-          module = "ESNext",
-          target = "ES2022",
+        -- the 3 entries below are not working, TODO: check later
+        implicitProjectConfiguration = {
+          module = "NodeNext",
+          target = "ES2021",
           strictNullChecks = true,
           strictFunctionTypes = true,
           experimentalDecorators = false,
+          noImplicitAny = false,
           checkJs = true,
+          allowJs = true,
+        },
+        implicitProjectConfig = {
+          module = "NodeNext",
+          moduleResolution = "node",
+          target = "ES2021",
+          noImplicitAny = false,
         },
         tsserver_plugins = {
-          "typescript-lit-html-plugin",
-          "lit-ts-plugin",
+          "ts-lit-plugin",
         },
       },
     },

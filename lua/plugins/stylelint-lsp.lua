@@ -10,17 +10,18 @@ return {
         stylelint_lsp = {
           settings = {
             stylelintplus = {
+              filetypes = {
+                "javascript",
+                "typescript",
+              },
               autoFixOnSave = true,
               autoFixOnFormat = true,
-              configFile = "/home/flo/Projects/clever-components/stylelint.config.json",
               cssInJs = true,
               customSyntax = "@stylelint/postcss-css-in-js",
               validate = {
                 "css",
                 "less",
                 "postcss",
-                "javascript",
-                "typescript",
               },
             },
           },
