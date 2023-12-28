@@ -3,3 +3,6 @@
 -- Add any additional options here
 -- not sure this is still necessary, TODO: check
 vim.g.root_spec = { "cwd" }
+vim.g.markdown_fenced_languages = {
+  "ts=typescript",
+}
