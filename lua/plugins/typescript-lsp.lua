@@ -1,4 +1,4 @@
-if false then
+if true then
   return {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
@@ -18,15 +18,7 @@ if false then
               allowJs = true,
               moduleResolution = "node",
             },
-            tsserver_plugins = {
-              {
-                name = "typescript-lit-html-plugin",
-              },
-              {
-                name = "/home/flo/Projects/components/node_modules/ts-lit-plugin/",
-                strict = true,
-              },
-            },
+            tsserver_plugins = {},
             javascript = {
               validate = {
                 enabled = true,
@@ -41,18 +33,10 @@ if false then
                 insertSpaceBeforeFunctionParenthesis = true,
               },
               suggest = {
-                completeFunctionCalls = true,
+                completeFunctionCalls = false,
               },
               updateImportsOnFileMove = true,
               preferGoToSourceDefinition = true,
-              -- implicitProjectConfig = {
-              --   target = "ES2022",
-              --   module = "ESNext",
-              --   checkJs = true,
-              --   strictNullChecks = true,
-              --   strictFunctionTypes = true,
-              --   experimentalDecorators = false,
-              -- },
             },
           },
         },
@@ -89,6 +73,7 @@ return {
         tsserver_plugins = {
           "ts-lit-plugin",
         },
+        tsserver_logVerbosity = "verbose",
         tsserver_file_preferences = {
           preferTypeOnlyAutoImports = false,
           quotePreference = "auto",
