@@ -1,3 +1,3 @@
 return {
-  { "jesseduffield/lazygit", enabled = false },
+  { "jesseduffield/lazygit", enabled = true },
 }
