@@ -7,6 +7,7 @@
         shellAliases = {
             ll = "ls -l -a";
             upd-gnome = "sudo nix flake update '/home/flo/.config/nixos-config' && sudo nixos-rebuild switch --upgrade --flake '/home/flo/.config/nixos-config#laptop-gnome'";
+            upd-hypr = "sudo nix flake update '/home/flo/.config/nixos-config' && sudo nixos-rebuild switch --upgrade --flake '/home/flo/.config/nixos-config#laptop-hypr'";
             clean = "sudo nix-collect-garbage -d";
             nxcfg = "cd /home/flo/.config/nixos-config";
             ww = "cd /home/flo/Projects/web";

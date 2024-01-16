@@ -13,5 +13,10 @@
         discord
         nodejs
         bun
+        nvtop
+    ];
+
+    fonts.packages = with pkgs; [
+        nerdfonts
     ];
 }

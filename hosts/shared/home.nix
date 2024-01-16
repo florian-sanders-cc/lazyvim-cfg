@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, hyprland, ... }:
 
 {
 
@@ -15,29 +15,30 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
     
     imports = [
         ./programs/git.nix
         ./programs/alacritty.nix
-        ./programs/neovim.nix
         ./programs/fzf.nix
         ./programs/starship.nix
         ./programs/direnv.nix
-        ./programs/vscode.nix
+        #./programs/vscode.nix
         ./programs/zsh.nix
+        ./programs/neovim.nix
         ./programs/syncthing.nix
+        ./programs/hyprland.nix
     ];
 
     home.sessionVariables = {
       NPM_PREFIX = "$HOME/.npm-packages";
       PATH = "$HOME/.npm-packages/bin:$PATH";
       NODE_PATH = "$HOME/.npm-packages/lib/node_modules";
-      #NIXOS_OZONE_WL= "1";
+      NIXOS_OZONE_WL= "1";
     };
-
 
 }

@@ -14,9 +14,6 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # Configure keymap in X11
   services.xserver = {
     layout = "fr";
@@ -29,10 +26,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Allow unfree packagei
+  # Allow unfree package
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -44,11 +38,11 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 
@@ -61,6 +55,15 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      # trying to fix `WLR_RENDERER=vulkan sway`
+      vulkan-validation-layers
+      # https://nixos.wiki/wiki/Accelerated_Video_Playback
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
   };
 
   hardware.nvidia = {
@@ -75,11 +78,20 @@
     # Enable the nvidia settings menu
     nvidiaSettings = true;
 
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    powerManagement.enable = false;
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     prime = {
-      sync.enable = true;
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
 
       nvidiaBusId = "PCI:01:00:0";
       intelBusId = "PCI:00:02:0";
@@ -95,6 +107,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
 
