@@ -7,12 +7,7 @@ vim.g.markdown_fenced_languages = {
   "ts=typescript",
 }
 if vim.g.neovide then
-  -- Put anything you want to happen only in Neovide here
-  -- vim.o.guifont = {
-  --   normal = { family = "JetBrainsMonoNL Nerd Font", style = "Thin" },
-  --   bold = { family = "JetBrainsMonoNL Nerd Font", style = "SemiBold" },
-  -- --   bold_italic = { family = "JetBrainsMonoNL Nerd Font", style = "SemiBold Italic" },
-  -- }
+  vim.o.linespace = 5
   vim.g.neovide_padding_top = 20
   vim.g.neovide_padding_bottom = 20
   vim.g.neovide_padding_right = 20

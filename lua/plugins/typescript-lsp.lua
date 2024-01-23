@@ -1,4 +1,4 @@
-if false then
+if true then
   return {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
@@ -13,12 +13,9 @@ if false then
           settings = {
             implicitProjectConfiguration = {
               checkJs = true,
-              target = "ES2021",
-              lib = { "ES2021" },
               allowJs = true,
-              moduleResolution = "node",
             },
-            path = "/home/flo/.volta/tools/image/packages/typescript/lib/node_modules/typescript/lib/tsserver.js",
+            -- path = "/home/flo/.volta/tools/image/packages/typescript/lib/node_modules/typescript/lib/tsserver.js",
             importModuleSpecifierEnding = "js",
             tsserver_plugins = {},
             javascript = {
@@ -71,10 +68,10 @@ return {
         code_lens = "off",
         disable_member_code_lens = true,
         expose_as_code_action = "all",
-        tsserver_path = "/home/flo/.volta/tools/image/packages/typescript/lib/node_modules/typescript/lib/tsserver.js",
-        tsserver_plugins = {
-          "ts-lit-plugin",
-        },
+        -- tsserver_path = "/home/flo/.volta/tools/image/packages/typescript/lib/node_modules/typescript/lib/tsserver.js",
+        -- tsserver_plugins = {
+        --   "ts-lit-plugin",
+        -- },
         tsserver_file_preferences = {
           preferTypeOnlyAutoImports = false,
           quotePreference = "auto",
