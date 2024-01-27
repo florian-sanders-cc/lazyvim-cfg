@@ -1,3 +1,7 @@
+local HOME = os.getenv("HOME")
+
+-- vim.lsp.set_log_level("debug")
+
 if true then
   return {
     "neovim/nvim-lspconfig",
@@ -6,16 +10,20 @@ if true then
       servers = {
         ---@type lspconfig.options.tsserver
         tsserver = {
-          filetypes = {
-            "javascript",
-            "typescript",
-          },
+          on_new_config = function(new_config, new_root_dir)
+            if string.find(new_root_dir, "console3") then
+              new_config.init_options = {
+                hostInfo = "neovim",
+                tsserver = {
+                  path = HOME .. "/.volta/tools/image/packages/typescript/lib/node_modules/typescript/lib/tsserver.js",
+                },
+              }
+            end
+          end,
+          filetypes = { "javascript", "typescript" },
           settings = {
-            implicitProjectConfiguration = {
-              checkJs = true,
-              allowJs = true,
-            },
-            -- path = "/home/flo/.volta/tools/image/packages/typescript/lib/node_modules/typescript/lib/tsserver.js",
+            implicitProjectConfiguration = { checkJs = true, allowJs = true },
+            fallbackPath = HOME .. ".volta/tools/image/packages/typescript/lib/node_modules/typescript/lib/tsserver.js",
             importModuleSpecifierEnding = "js",
             tsserver_plugins = {},
             javascript = {
