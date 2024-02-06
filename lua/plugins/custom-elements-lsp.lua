@@ -6,6 +6,7 @@ return {
     servers = {
       ---@type lspconfig.options.custom_elements_ls
       custom_elements_ls = {
+        enabled = false,
         filetypes = {
           "html",
           "javascript",
